@@ -1,12 +1,12 @@
 import { Flex, Button, Stack } from '@chakra-ui/react'
-import * as yup from 'yup';
+import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from '../components/Form/Input'
 
 type SignFormData = {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 const signInFormSchema = yup.object().shape({
@@ -16,23 +16,18 @@ const signInFormSchema = yup.object().shape({
 
 export default function SignIn() {
   const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(signInFormSchema)
+    resolver: yupResolver(signInFormSchema),
   })
   const { errors } = formState
 
-  const handdleSigin: SubmitHandler<SignFormData> = async(values) => {
+  const handdleSigin: SubmitHandler<SignFormData> = async (values) => {
     console.log(values)
   }
 
   return (
-    <Flex 
-      w="100vw" 
-      h="100vh" 
-      align="center" 
-      justify="center" 
-    >
-      <Flex 
-        as="form" 
+    <Flex w="100vw" h="100vh" align="center" justify="center">
+      <Flex
+        as="form"
         width="100%"
         maxWidth={360}
         bg="gray.800"
@@ -42,10 +37,30 @@ export default function SignIn() {
         onSubmit={handleSubmit(handdleSigin)}
       >
         <Stack spacing="4">
-          <Input name="email" type="email" label="E-mail" error={errors.email} {...register('email')} />
-          <Input name="password" type="password" label="Senha" error={errors.password} {...register('password')}/>
+          <Input
+            name="email"
+            type="email"
+            label="E-mail"
+            error={errors.email}
+            {...register('email')}
+          />
+          <Input
+            name="password"
+            type="password"
+            label="Senha"
+            error={errors.password}
+            {...register('password')}
+          />
         </Stack>
-        <Button type="submit" mt="6" colorScheme="pink" size="lg" isLoading={formState.isSubmitting}>Entrar</Button>
+        <Button
+          type="submit"
+          mt="6"
+          colorScheme="pink"
+          size="lg"
+          isLoading={formState.isSubmitting}
+        >
+          Entrar
+        </Button>
       </Flex>
     </Flex>
   )

@@ -1,39 +1,39 @@
-import { Flex, SimpleGrid, Box, Text, theme } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Box, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import { ApexOptions } from 'apexcharts';
+import { Header } from '../components/Header'
+import { Sidebar } from '../components/Sidebar'
+import { ApexOptions } from 'apexcharts'
 
 const Chart = dynamic(() => import('react-apexcharts'), {
-  ssr: false
+  ssr: false,
 })
 
 const options: ApexOptions = {
   chart: {
     toolbar: {
-      show: false
+      show: false,
     },
     zoom: {
-      enabled: false
+      enabled: false,
     },
-    foreColor: theme.colors.gray[500]
+    foreColor: theme.colors.gray[500],
   },
   grid: {
-    show: false
+    show: false,
   },
   dataLabels: {
-    enabled: false
+    enabled: false,
   },
   tooltip: {
-    enabled: false
+    enabled: false,
   },
   xaxis: {
     type: 'datetime',
     axisBorder: {
-      color: theme.colors.gray[600]
+      color: theme.colors.gray[600],
     },
     axisTicks: {
-      color: theme.colors.gray[600]
+      color: theme.colors.gray[600],
     },
     categories: [
       '2021-03-18T00:00:00.000Z',
@@ -43,22 +43,20 @@ const options: ApexOptions = {
       '2021-03-22T00:00:00.000Z',
       '2021-03-23T00:00:00.000Z',
       '2021-03-24T00:00:00.000Z',
-    ]
+    ],
   },
   fill: {
     opacity: 0.3,
-    type: "gradient",
+    type: 'gradient',
     gradient: {
       shade: 'dark',
       opacityFrom: 0.7,
-      opacityTo: 0.3
-    }
-  }
+      opacityTo: 0.3,
+    },
+  },
 }
 
-const series = [
-  { name: 'series1', data: [32, 120, 10, 28, 61, 18, 109] }
-]
+const series = [{ name: 'series1', data: [32, 120, 10, 28, 61, 18, 109] }]
 
 export default function Dashboard() {
   return (
@@ -69,22 +67,16 @@ export default function Dashboard() {
         <Sidebar />
 
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-          <Box
-            p={["6", "8"]}
-            bg="gray.800"
-            borderRadius={8}
-            pb="4"
-          >
-            <Text fontSize="lg" mb="4">Inscrito da semana</Text>
+          <Box p={['6', '8']} bg="gray.800" borderRadius={8} pb="4">
+            <Text fontSize="lg" mb="4">
+              Inscrito da semana
+            </Text>
             <Chart options={options} series={series} type="area" height={160} />
           </Box>
-          <Box
-            p={["6", "8"]}
-            bg="gray.800"
-            borderRadius={8}
-            pb="4"
-          >
-            <Text fontSize="lg" mb="4">Taxa de abertura</Text>
+          <Box p={['6', '8']} bg="gray.800" borderRadius={8} pb="4">
+            <Text fontSize="lg" mb="4">
+              Taxa de abertura
+            </Text>
             <Chart options={options} series={series} type="area" height={160} />
           </Box>
         </SimpleGrid>
